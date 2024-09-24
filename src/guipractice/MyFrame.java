@@ -5,26 +5,39 @@
 package guipractice;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
  *
  * @author user
  */
-public class MyFrame extends JFrame{
+public class MyFrame extends JFrame implements ActionListener{
+    
+    JButton button;
     
     MyFrame(){
-        this.setTitle("JFrame title goes here");
+        
+        button = new JButton();
+        button.setBounds(200, 100, 100, 50);
+        button.addActionListener(this);
+        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setSize(420,420); // sets the x-dimension, and y-dimension of frame
+        this.setLayout(null);
+        this.setSize(500,500); // sets the x-dimension, and y-dimension of frame
         this.setVisible(true); //makes it visible
+        this.add(button);
         
-        ImageIcon image = new ImageIcon("pfp-man.jpg"); //create an ImageIcon
-        this.setIconImage(image.getImage()); //change icon of frame
-        this.getContentPane().setBackground(new Color(123,50,250));
-        
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==button){
+            System.out.println("poo");
+        }
     }
     
 }
