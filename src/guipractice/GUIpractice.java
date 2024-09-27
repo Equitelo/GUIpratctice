@@ -7,33 +7,47 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 public class GUIpractice {
 
     public static void main(String[] args) {
-        // Layout Manager = Defines the natural layout for components within a container
+        //JLayeredPane = Swing container that provides a 
+        //               third dimension for positioning components
+        //               ex. depth, Z-index
         
-        //GridLayout = places components in a grid of cells.
-        //             Each component takes all the available space within its cell,
-        //             and each cell is the same size.
+        JLabel label1 = new JLabel();
+        label1.setOpaque(true);
+        label1.setBackground(Color.RED);
+        label1.setBounds(50, 50, 200, 200);
         
-        JFrame frame = new JFrame();
+        JLabel label2 = new JLabel();
+        label2.setOpaque(true);
+        label2.setBackground(Color.GREEN);
+        label2.setBounds(100, 100, 200, 200);
+        
+        JLabel label3 = new JLabel();
+        label3.setOpaque(true);
+        label3.setBackground(Color.BLUE);
+        label3.setBounds(150, 150, 200, 200);
+        
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, 500, 500);
+        
+        //layers:
+        // 1.Default 2.Palette 3.Modal 4.PopUp 5.Drag
+        
+        layeredPane.add(label1, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(label2, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(label3, JLayeredPane.DRAG_LAYER);
+        
+        JFrame frame = new JFrame("JLayeredPane");
+        frame.add(layeredPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
-        //                             rows, columns, horizontal margin, vertical margin
-        frame.setLayout(new GridLayout(3, 3, 10, 10));
-        
-        frame.add(new JButton("1"));
-        frame.add(new JButton("2"));
-        frame.add(new JButton("3"));
-        frame.add(new JButton("4"));
-        frame.add(new JButton("5"));
-        frame.add(new JButton("6"));
-        frame.add(new JButton("7"));
-        frame.add(new JButton("8"));
-        frame.add(new JButton("9"));
-        
+        frame.setLayout(null);
         frame.setVisible(true);
     }
     
