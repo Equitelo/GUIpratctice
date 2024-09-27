@@ -36,12 +36,11 @@ public class GUIpractice {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBounds(0, 0, 500, 500);
         
-        //layers:
-        // 1.Default 2.Palette 3.Modal 4.PopUp 5.Drag
+        //higher the number, higher the placement is:
         
-        layeredPane.add(label1, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(label2, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.add(label3, JLayeredPane.DRAG_LAYER);
+        layeredPane.add(label1, Integer.valueOf(0));
+        layeredPane.add(label2, Integer.valueOf(2));
+        layeredPane.add(label3, Integer.valueOf(1));
         
         JFrame frame = new JFrame("JLayeredPane");
         frame.add(layeredPane);
