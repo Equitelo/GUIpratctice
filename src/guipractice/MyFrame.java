@@ -1,37 +1,42 @@
 package guipractice;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 
 public class MyFrame extends JFrame implements ActionListener{
     
     JButton button;
-    JTextField textfield;
+    JCheckBox checkBox;
+    ImageIcon xIcon;
+    ImageIcon checkIcon;
     
     MyFrame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         
-        button = new JButton("Submit");
+        xIcon = new ImageIcon("src/check.png");
+        checkIcon = new ImageIcon("src/cross.png");
+
+        
+        button = new JButton();
+        button.setText("submit");
         button.addActionListener(this);
         
-        textfield = new JTextField();
-        textfield.setPreferredSize(new Dimension(250,40));
-        textfield.setFont(new Font("Consolas",Font.PLAIN,35));
-        textfield.setForeground(new Color(0x00FF00));
-        textfield.setBackground(Color.black);
-        textfield.setCaretColor(Color.white);
-        textfield.setText("username");
+        checkBox = new JCheckBox();
+        checkBox.setText("I'm not a robot");
+        checkBox.setFocusable(false);
+        checkBox.setFont(new Font("Consolas",Font.PLAIN,35));
+        checkBox.setIcon(checkIcon);
+        checkBox.setSelectedIcon(xIcon);
         
         this.add(button);
-        this.add(textfield);
+        this.add(checkBox);
         this.pack();
         this.setVisible(true);
     }
@@ -39,9 +44,7 @@ public class MyFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==button){
-            System.out.println(textfield.getText());
-            button.setEnabled(false);
-            textfield.setEditable(false);
+            System.out.println(checkBox.isSelected());
         }
     }
     

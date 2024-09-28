@@ -3,7 +3,7 @@ package guipractice;
 public class GUIpractice {
 
     public static void main(String[] args) {
-        // JTextField = A GUI textbox component that can be used to add, set, or get text
+        // JCheckBox = A GUI component that can be selected or deselected
         
         MyFrame frame = new MyFrame();
     }
