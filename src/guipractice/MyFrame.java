@@ -4,62 +4,41 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JRadioButton;
 
 public class MyFrame extends JFrame implements ActionListener{
     
-    JRadioButton pizzaButton;
-    JRadioButton hamburgerButton;
-    JRadioButton hotdogButton;
-    ImageIcon pizzaIcon;
-    ImageIcon hamburgerIcon;
-    ImageIcon hotdogIcon;
+    JComboBox comboBox;
     
     MyFrame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         
-        pizzaIcon = new ImageIcon("src/slice.png");
-        hamburgerIcon = new ImageIcon("src/burger.png");
-        hotdogIcon = new ImageIcon("src/hotdog.png");
+//        Double []decimals = {1.1,2.2,3.3};
+//        Integer []numbers = {1,2,3};
+        String []animals = {"dog","cat","bird"};
+        comboBox = new JComboBox(animals);
+        comboBox.addActionListener(this);
         
-        pizzaButton = new JRadioButton("pizza");
-        hamburgerButton = new JRadioButton("hamburger");
-        hotdogButton = new JRadioButton("hotdog");
+        //comboBox.setEditable(true);
+        //System.out.println(comboBox.getItemCount());
+        //comboBox.addItem("horse");
+//        comboBox.insertItemAt("pig",0);
+//        comboBox.setSelectedIndex(0);
+//        comboBox.removeItem("cat");
+//        comboBox.removeItemAt(0);
+//        comboBox.removeAllItems();
         
-        ButtonGroup group = new ButtonGroup();
-        group.add(pizzaButton);
-        group.add(hamburgerButton);
-        group.add(hotdogButton);
-        
-        pizzaButton.addActionListener(this);
-        hamburgerButton.addActionListener(this);
-        hotdogButton.addActionListener(this);
-        
-        pizzaButton.setIcon(pizzaIcon);
-        hamburgerButton.setIcon(hamburgerIcon);
-        hotdogButton.setIcon(hotdogIcon);
-        
-        this.add(pizzaButton);
-        this.add(hamburgerButton);
-        this.add(hotdogButton);
+        this.add(comboBox);
         this.pack();
         this.setVisible(true);
     }
     
     @Override
     public void actionPerformed(ActionEvent e){
-        if (e.getSource()==pizzaButton) {
-            System.out.println("You ordered pizza!");
-        }else if(e.getSource()==hamburgerButton){
-            System.out.println("You ordered a hamburger!");
-        }else if(e.getSource()==hotdogButton){
-            System.out.println("You ordered a hotdog!");
+        if (e.getSource()==comboBox) {
+            System.out.println(comboBox.getSelectedItem());
         }
     }
     
