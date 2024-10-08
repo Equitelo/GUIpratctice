@@ -4,8 +4,7 @@ public class GUIpractice {
 
     public static void main(String[] args) {
         
-        // JSlider = GUI component that lets user enter a value
-        //           by using an adjustable sliding knob on a track
+        // progress bar = Visual aid to let the user know that an operation is processing
         
         MyFrame frame = new MyFrame();
     }

@@ -2,52 +2,43 @@ package guipractice;
 
 import  java.awt.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
-public class MyFrame extends JFrame implements ChangeListener{
+public class MyFrame extends JFrame {
     
-    JFrame frame;
-    JPanel panel;
-    JLabel label;
-    JSlider slider;
+    JFrame frame = new JFrame();
+    JProgressBar bar = new JProgressBar(0, 100);  
     
     MyFrame(){
-        frame = new JFrame("Slider Demo");
-        panel = new JPanel();
-        label = new JLabel();
-        ///                 (min, max, starting point)
-        slider = new JSlider(0, 100, 50);
         
-        slider.setPreferredSize(new Dimension(400, 200));
-        slider.setPaintTicks(true);
-        //             (how many units to show up)
-        slider.setMinorTickSpacing(10);
+        bar.setValue(0);
+        bar.setBounds(0, 0, 420, 50);
+        bar.setStringPainted(true);
+        bar.setFont(new Font("MV Boli", Font.BOLD, 25));
+        bar.setForeground(Color.red);
+        bar.setBackground(Color.black);
         
-        slider.setPaintTrack(true);
-        slider.setMajorTickSpacing(25);
-        
-        slider.setPaintLabels(true);
-        slider.setFont(new Font("MV BOLi", Font.PLAIN,15));
-        label.setFont(new Font("MV BOLi", Font.PLAIN,25));
-        
-        slider.setOrientation(SwingConstants.VERTICAL);
-        
-        label.setText("°C = "+slider.getValue());
-        
-        slider.addChangeListener(this);
-        
-        panel.add(slider);
-        panel.add(label);
-        frame.add(panel);
-        frame.setSize(420,420);
+        frame.add(bar);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(420, 420);
+        frame.setLayout(null);
         frame.setVisible(true);
+        
+        this.fill();
     }
     
-    @Override
-    public void stateChanged(ChangeEvent e){
+    public void fill(){
+        int counter = 500;
         
-        label.setText("°C = "+slider.getValue());
-        
+        while(counter>=0){
+            bar.setValue(counter);
+            try {
+                Thread.sleep(100);
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+            counter -= 1;
+        }
+        bar.setString("DONE! :)");
     }
     
 }
