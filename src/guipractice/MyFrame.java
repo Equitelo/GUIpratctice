@@ -1,45 +1,53 @@
 package guipractice;
 
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import  java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
 
-public class MyFrame extends JFrame implements ActionListener{
+public class MyFrame extends JFrame implements ChangeListener{
     
-    JComboBox comboBox;
+    JFrame frame;
+    JPanel panel;
+    JLabel label;
+    JSlider slider;
     
     MyFrame(){
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new FlowLayout());
+        frame = new JFrame("Slider Demo");
+        panel = new JPanel();
+        label = new JLabel();
+        ///                 (min, max, starting point)
+        slider = new JSlider(0, 100, 50);
         
-//        Double []decimals = {1.1,2.2,3.3};
-//        Integer []numbers = {1,2,3};
-        String []animals = {"dog","cat","bird"};
-        comboBox = new JComboBox(animals);
-        comboBox.addActionListener(this);
+        slider.setPreferredSize(new Dimension(400, 200));
+        slider.setPaintTicks(true);
+        //             (how many units to show up)
+        slider.setMinorTickSpacing(10);
         
-        //comboBox.setEditable(true);
-        //System.out.println(comboBox.getItemCount());
-        //comboBox.addItem("horse");
-//        comboBox.insertItemAt("pig",0);
-//        comboBox.setSelectedIndex(0);
-//        comboBox.removeItem("cat");
-//        comboBox.removeItemAt(0);
-//        comboBox.removeAllItems();
+        slider.setPaintTrack(true);
+        slider.setMajorTickSpacing(25);
         
-        this.add(comboBox);
-        this.pack();
-        this.setVisible(true);
+        slider.setPaintLabels(true);
+        slider.setFont(new Font("MV BOLi", Font.PLAIN,15));
+        label.setFont(new Font("MV BOLi", Font.PLAIN,25));
+        
+        slider.setOrientation(SwingConstants.VERTICAL);
+        
+        label.setText("°C = "+slider.getValue());
+        
+        slider.addChangeListener(this);
+        
+        panel.add(slider);
+        panel.add(label);
+        frame.add(panel);
+        frame.setSize(420,420);
+        frame.setVisible(true);
     }
     
     @Override
-    public void actionPerformed(ActionEvent e){
-        if (e.getSource()==comboBox) {
-            System.out.println(comboBox.getSelectedItem());
-        }
+    public void stateChanged(ChangeEvent e){
+        
+        label.setText("°C = "+slider.getValue());
+        
     }
     
 }

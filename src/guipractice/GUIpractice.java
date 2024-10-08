@@ -3,8 +3,9 @@ package guipractice;
 public class GUIpractice {
 
     public static void main(String[] args) {
-        // JRadioButton = One or more buttons in a grouping in which only 1 may be selected per group
-        // JComboBox = A component that combines a button or editable field and a drop-down list
+        
+        // JSlider = GUI component that lets user enter a value
+        //           by using an adjustable sliding knob on a track
         
         MyFrame frame = new MyFrame();
     }
