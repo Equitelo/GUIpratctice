@@ -1,44 +1,76 @@
 package guipractice;
 
 import  java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
-public class MyFrame extends JFrame {
+public class MyFrame extends JFrame implements ActionListener{
     
-    JFrame frame = new JFrame();
-    JProgressBar bar = new JProgressBar(0, 100);  
+    JMenuBar menuBar;
+    JMenu fileMenu;
+    JMenu editMenu;
+    JMenu helpMenu;
+    JMenuItem loadItem;
+    JMenuItem saveItem;
+    JMenuItem exitItem;
+    
+    ImageIcon file = new ImageIcon("src/folder.png");
+    ImageIcon saving = new ImageIcon("src/save.png");
+    ImageIcon exitDoor = new ImageIcon("src/door.png");
     
     MyFrame(){
         
-        bar.setValue(0);
-        bar.setBounds(0, 0, 420, 50);
-        bar.setStringPainted(true);
-        bar.setFont(new Font("MV Boli", Font.BOLD, 25));
-        bar.setForeground(Color.red);
-        bar.setBackground(Color.black);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(500, 500);
+        this.setLayout(new FlowLayout());
         
-        frame.add(bar);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 420);
-        frame.setLayout(null);
-        frame.setVisible(true);
+        menuBar = new JMenuBar();
         
-        this.fill();
+        fileMenu = new JMenu("File");
+        editMenu = new JMenu("Edit");
+        helpMenu = new JMenu("Help");
+        
+        loadItem = new JMenuItem("Load");
+        saveItem = new JMenuItem("Save");
+        exitItem = new JMenuItem("Exit");
+        
+        loadItem.addActionListener(this);
+        saveItem.addActionListener(this);
+        exitItem.addActionListener(this);
+        
+        loadItem.setIcon(file);
+        saveItem.setIcon(saving);
+        exitItem.setIcon(exitDoor);
+        
+        fileMenu.setMnemonic(KeyEvent.VK_F); // Alt + F for file
+        editMenu.setMnemonic(KeyEvent.VK_E); // Alt + E for edit
+        helpMenu.setMnemonic(KeyEvent.VK_H); // Alt + H for help
+        loadItem.setMnemonic(KeyEvent.VK_L); // L for load from keyboard
+        saveItem.setMnemonic(KeyEvent.VK_S); // S for save from keyboard
+        exitItem.setMnemonic(KeyEvent.VK_E); // E for exit from keyboard
+        
+        fileMenu.add(loadItem);
+        fileMenu.add(saveItem);
+        fileMenu.add(exitItem);
+        
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        menuBar.add(helpMenu);
+        
+        this.add(menuBar);
+        this.setVisible(true);
+        
     }
     
-    public void fill(){
-        int counter = 500;
-        
-        while(counter>=0){
-            bar.setValue(counter);
-            try {
-                Thread.sleep(100);
-            } catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-            counter -= 1;
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if (e.getSource()==loadItem) {
+            System.out.println("*beep boop* you loaded a file");
+        } else if (e.getSource()==saveItem) {
+            System.out.println("*beep boop* you saved a file");
+        } else if (e.getSource()==exitItem) {
+            System.exit(0);
         }
-        bar.setString("DONE! :)");
     }
     
 }
