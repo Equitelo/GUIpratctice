@@ -2,44 +2,64 @@ package guipractice;
 
 import  java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import javax.swing.*;
 
-public class MyFrame extends JFrame implements ActionListener{
+public class MyFrame extends JFrame implements KeyListener{
     
-    JButton button;
     JLabel label;
+    ImageIcon icon;
     
     MyFrame(){
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new FlowLayout());
+        this.setSize(500,500);
+        this.setLayout(null);
+        this.addKeyListener(this);
         
-        button = new JButton("Pick a Color");
-        button.addActionListener(this);
+        icon = new ImageIcon("src/lobo.png");
+        
         label = new JLabel();
-        label.setBackground(Color.white);
-        label.setText("This is some text! :D");
-        label.setFont(new Font("MV Boli",Font.PLAIN,100));
-        label.setOpaque(true);
-        
-        this.add(button);
+        label.setBounds(0, 0, 100, 100);
+        label.setIcon(icon);
+//        label.setBackground(Color.red);
+//        label.setOpaque(true);
+        this.getContentPane().setBackground(Color.red);
         this.add(label);
-        this.pack();
         this.setVisible(true);
         
     }
     
     @Override
-    public void actionPerformed(ActionEvent e){
-        if (e.getSource()==button) {
-            JColorChooser colorChooser= new JColorChooser();
-            
-            Color color = JColorChooser.showDialog(null, "Pick Color", Color.black);
-            
-            //label.setForeground(color);
-            label.setBackground(color);
+    public void keyTyped(KeyEvent e){
+        //keyTyped = Invoked when a key is typed. Uses KeyChar, char output
+        switch(e.getKeyChar()){
+            case 'w':
+                label.setLocation(label.getX(), label.getY()-10);
+                break;
+            case 'a':
+                label.setLocation(label.getX()-10, label.getY());
+                break;
+            case 's':
+                label.setLocation(label.getX(), label.getY()+10);
+                break;
+            case 'd':
+                label.setLocation(label.getX()+10, label.getY());
+                break;
         }
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent e){
+        //keyPressed = Invoked when a physical key is pressed down. Uses KeyCode, int output
+        
+    }
+    
+    @Override
+    public void keyReleased(KeyEvent e){
+        //keyReleased = called whenever a button is released
+        System.out.println("");
+        System.out.println("You released key char: " + e.getKeyChar());
+        System.out.println("You released key code: " + e.getKeyCode());
     }
     
 }
