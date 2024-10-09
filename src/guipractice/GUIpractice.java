@@ -4,7 +4,7 @@ public class GUIpractice {
 
     public static void main(String[] args) {
         
-        // menu bar = Visual aid to let the user enter different items
+        // JFileChooser = A GUI mechanism that let's a user choose a file (helpful for opening or saving files)
         
         MyFrame frame = new MyFrame();
     }
