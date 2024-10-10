@@ -6,7 +6,7 @@ public class GUIpractice {
         
         // JColorChooser = A GUI mechanism that let's a user choose a color
         
-        MyFrame frame = new MyFrame();
+        new MyFrame();
     }
     
 }
